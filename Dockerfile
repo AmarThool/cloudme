@@ -1,10 +1,12 @@
-FROM centos:lates
+FROM centos:latest
 MAINTAINER ar.thool27@gmail.com 
 RUN yum install -y httpd \
   zip \
-  unzipDD httpds: //
+  unzip
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip
 WORKDIR /var/www/html
-RUN unzip kindle.zip
-RUN cp -rvf markups-kindle/* .
+RUN unzip photogenic.zip
+RUN cp -rvf photogenic/* .
+RUN rm -rf photogenic.zip photogenic
 CMD ["/user/sbin/httpd", "-D", "FOREGROUND"]
 EXPOSE 80
